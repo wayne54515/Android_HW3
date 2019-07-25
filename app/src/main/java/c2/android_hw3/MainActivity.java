@@ -3,6 +3,7 @@ package c2.android_hw3;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +70,7 @@ public class MainActivity extends Activity {
 //                user_list.addView(tr);
             }
         } catch(Exception e) {
-            // Log.e("log_tag", e.toString());
+             Log.e("log_tag", e.toString());
         }
 
         final String[] json_list = {"u1", "u2", "u3", "u4", "u5"};
