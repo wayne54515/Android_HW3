@@ -19,9 +19,11 @@ public class ViewAdapter extends BaseAdapter {
 
     private LayoutInflater mLayInf;
     List<Map<String, Object>> mItemList;
+    TextView txtView;
+    ImageView imgView;
     public ViewAdapter(Context context,  List<Map<String, Object>> itemList)
     {
-        mLayInf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mLayInf = LayoutInflater.from(context);
         mItemList = itemList;
     }
 
@@ -36,7 +38,7 @@ public class ViewAdapter extends BaseAdapter {
     public Object getItem(int position)
     {
         //取得 ListView 列表於 position 位置上的 Item
-        return position;
+        return mItemList.get(position).get("object");
     }
 
     @Override
@@ -50,10 +52,10 @@ public class ViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent)
     {
         //設定與回傳 convertView 作為顯示在這個 position 位置的 Item 的 View。
-        View v = mLayInf.inflate(R.layout.adapter, parent, false);
+        convertView = mLayInf.inflate(R.layout.adapter, parent, false);
 
-        ImageView imgView = (ImageView) v.findViewById(R.id.image);
-        TextView txtView = (TextView) v.findViewById(R.id.name);
+        imgView = (ImageView) convertView.findViewById(R.id.image);
+        txtView = (TextView) convertView.findViewById(R.id.name);
 
         Context context = imgView.getContext();
 
@@ -66,7 +68,7 @@ public class ViewAdapter extends BaseAdapter {
         imgView.setImageResource(resId);
         txtView.setText(mItemList.get(position).get("object").toString());
 
-        return v;
+        return convertView;
     }
 
 }
